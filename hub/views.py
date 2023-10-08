@@ -96,7 +96,7 @@ class CreatePost(View):
             post.author = request.user
             post.save()
             messages.success(request, "Your post has been created successfully!")
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse('post_detail', args=[post.slug]))
         return render(request, 'create_post.html', {'form': form})
 
 

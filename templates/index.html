@@ -23,7 +23,12 @@
                                     <p class="author">Author: {{ post.author }}</p>
                                 </div>
                             </div>
+                            {% if post.slug %}
                             <a href="{% url 'post_detail' post.slug  %}" class="post-link">
+                                {% else %}
+                                <!-- Handle the case when there is no slug -->
+                                {% endif %}
+
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>

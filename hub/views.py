@@ -1,25 +1,35 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Post
+from .models import Post, Category, Comment
 from .forms import CommentForm, PostForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import DeleteView
+from django.views.generic import DeleteView, ListView
 from django.urls import reverse_lazy
 
 
-class PostList(generic.ListView):
+class PostList(ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
+    context_object_name = "post_list"
     paginate_by = 6
 
     def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(slug__isnull=False)
+        category_name = self.request.GET.get("category")
+        if category_name:
+            # Filter posts based on the selected category
+            return Post.objects.filter(category__name=category_name, status=1).order_by("-created_on")
+        else:
+            # If no category is selected, show all published posts
+            return Post.objects.filter(status=1).order_by("-created_on")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the categories to the template for the filter dropdown
+        context["categories"] = Category.objects.all()
+        return context
 
 
 class PostDetail(View):
@@ -111,7 +121,3 @@ class DeletePost(DeleteView):
     model = Post
     template_name = 'post_confirm_delete.html'
     success_url = reverse_lazy('home')
-
-
-
-

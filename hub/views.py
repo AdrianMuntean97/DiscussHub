@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
-from .forms import CommentForm
+from .forms import CommentForm, PostForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class PostList(generic.ListView):
@@ -78,3 +80,23 @@ class PostLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+@method_decorator(login_required, name='dispatch')
+class CreatePost(View):
+
+    def get(self, request, *args, **kwargs):
+        form = PostForm()
+        return render(request, 'create_post.html', {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            messages.success(request, "Your post has been created successfully!")
+            return HttpResponseRedirect(reverse('home'))
+        return render(request, 'create_post.html', {'form': form})
+
+

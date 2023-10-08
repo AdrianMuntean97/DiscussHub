@@ -35,7 +35,7 @@ DEBUG = True
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-adrianmuntea-discusshub-o77tvxifne7.ws-eu105.gitpod.io', 'discusshub-f37fbed8aa3d.herokuapp.com']
+ALLOWED_HOSTS = ['8000-adrianmuntea-discusshub-9ysfjo8oknn.ws-eu105.gitpod.io', 'discusshub-f37fbed8aa3d.herokuapp.com']
 
 
 # Application definition

@@ -6,6 +6,8 @@ from .forms import CommentForm, PostForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
 
 
 class PostList(generic.ListView):
@@ -13,6 +15,11 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(slug__isnull=False)
+
 
 
 class PostDetail(View):
@@ -98,5 +105,13 @@ class CreatePost(View):
             messages.success(request, "Your post has been created successfully!")
             return HttpResponseRedirect(reverse('post_detail', args=[post.slug]))
         return render(request, 'create_post.html', {'form': form})
+
+
+class DeletePost(DeleteView):
+    model = Post
+    template_name = 'post_confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+
 
 

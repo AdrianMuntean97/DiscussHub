@@ -1,39 +1,101 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# DiscussHub
 
-Welcome,
+DiscussHub is a Full Stack forum, which runs on Heroku.
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+Users can log in or log out, enter or create posts, comment, like/unlike posts, and delete the posts they created
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+The live version can be found on this link https://discusshub-f37fbed8aa3d.herokuapp.com/
 
-## Codeanywhere Reminders
+<a href="https://ibb.co/kmfppZG"><img src="https://i.ibb.co/5KyddZ1/Am-IResponsive.png" alt="Am-IResponsive" border="0"></a>
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## Features
 
-`python3 -m http.server`
+- The User can log in or log out
+- Users can register on the website
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/2v5NLgd/LogIn.png" alt="LogIn" border="0"></a>
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+<a href="https://ibb.co/znSgTdm"><img src="https://i.ibb.co/yf8Cc2N/Register.png" alt="Register" border="0"></a>
 
-`http_server`
+- The user will recive messages when they login/logout and when they post a comment
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/sWxv2FN/Messages-And-Filter-Search.png" alt="Messages-And-Filter-Search" border="0"></a>
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+- The user can also search topics based on a category
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/n8JLrzj/Search-Filter.png" alt="Search-Filter" border="0"></a>
 
-To log into the Heroku toolbelt CLI:
+- Users can create posts 
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+<a href="https://ibb.co/8PznmS7"><img src="https://i.ibb.co/3Sf5TLC/Create-Post.png" alt="Create-Post" border="0"></a>
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- Users who created a Post can delete it if they want
 
----
+<a href="https://ibb.co/GFtmHbk"><img src="https://i.ibb.co/N7mRTHp/Delete-Post.png" alt="Delete-Post" border="0"></a>
 
-Happy coding!
+- Users can comment on a post or like/unlike the post if they are logged in
+
+<a href="https://ibb.co/vVjHMN3"><img src="https://i.ibb.co/ZGMVbQB/Comment-Like.png" alt="Comment-Like" border="0"></a>
+
+- The admin page is working properly and every function i've tested works
+
+<a href="https://ibb.co/Xxdw5Tj"><img src="https://i.ibb.co/LdqGgfY/Admin-Page.png" alt="Admin-Page" border="0"></a>
+
+## Testing
+
+- Test : User loads the landing page <br>
+    -- Result : Page display without error both logged in or out, all page content is displayed properly and the navigation bar is working as expected
+
+- Test : User tries to log in or out <br>
+    -- Result : The log in/out functions are working properly and the user is prompted to confirm if he want to log out.
+
+- Test : Creating a Post <br>
+    -- Result : After the user create a post he get redirected on the post detail page with a message for a succesul post creation.
+
+- Test : Leaving a comment <br>
+    -- Result : The logged in user can leave a comment receiving a message that his comment was posted successfuly and awaiting admin approval.
+
+- Test : Deleting a post <br>
+    -- Result : The user who created the post can delete it and the function works properly and receiving a confirmation for deleting the post, User being redirected back on the Home page without any issues.
+
+- Test : Filter category <br>
+    -- Result : The user can filter posts based on a category and the function works properly displaying only the posts that have been created with said category.
+
+- Test : Admin page <br>
+    -- Result : Admin page works properly and the admin can create, delete, approve comments, posts and categories on the admin panel.
+
+- Test : Like/Unlike <br>
+    -- Result : Like/Unlike function works as intended, Users who are logged in can like a post
+
+- Test : Site pagination <br>
+    -- Result : Site pagination works properly, when there are more than 6 posts created on the page the posts are shown on a different page.
+
+- Test : Uploading a photo <br>
+    -- Result : When creating a new phost the photo upload works properly and the photo is displayed 
+
+- Test : Register user <br>
+    -- Result : The register function works as you can register as a new user with password matching and complexity requirement 
+
+## Bugs
+
+- Edit/Delete Comment <br>
+    -- I tried implementing the Edit/Delete function for users who wrote the comments but couldn't find a way to do it. As the only way i found would give me an error from the database saying the values can't be null and getting an error. Did not Implement in the end.
+
+
+
+## Deployment
+
+The project was deployed using Code Institute's mock terminal for Heroku.
+- Steps for deployment:
+    - Clone this repository
+    - Create a new Heroku app
+    - Set the buildpacks to Python
+    - Link the Heroku app to the repository
+    - Click on Deploy
+
+## Credits
+
+- Code Institute for providing a base forum like website(I think therefore I blog) where I could improve and adapt based on what I needed to do.
+
+   
+

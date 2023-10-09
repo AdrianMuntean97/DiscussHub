@@ -31,11 +31,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-ALLOWED_HOSTS = ['8000-adrianmuntea-discusshub-9ysfjo8oknn.ws-eu105.gitpod.io', 'discusshub-f37fbed8aa3d.herokuapp.com']
+ALLOWED_HOSTS = ['8000-adrianmuntea-discusshub-keqdicy47o5.ws-eu105.gitpod.io', 'discusshub-f37fbed8aa3d.herokuapp.com']
 
 
 # Application definition
